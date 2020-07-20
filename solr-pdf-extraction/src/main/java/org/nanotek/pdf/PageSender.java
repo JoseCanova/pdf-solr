@@ -4,6 +4,12 @@ import org.nanotek.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 
+ * @author nanotek
+ *
+ * @param <K> - a PpdfStrippedPage.
+ */
 @Service
 public class PageSender<K extends PdfStrippedPage> 
 						implements Sender<K , K>{

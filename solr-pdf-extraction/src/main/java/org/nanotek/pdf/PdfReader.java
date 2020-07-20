@@ -22,12 +22,12 @@ public class PdfReader {
 	public PdfReader() {
 	}
 
-	
-	public void  readPdf() throws IOException {
+	public void  readPdf(File file) throws IOException {
 		int ini = 0 , fim = 0; 
 		
+//		"/home/jose/processo-alvara/Diario_J_02.pdf" 
 		
-	        try (PDDocument document = PDDocument.load(new File("/home/jose/teste.pdf"))) {
+	        try (PDDocument document = PDDocument.load(file)) {
 
 	            int numPages = document.getNumberOfPages();
 	            PDFTextStripper tStripper = new PDFTextStripper();
@@ -39,25 +39,6 @@ public class PdfReader {
 		            String pdfFileInText = tStripper.getText(document);
 		            pageSender.send(new PdfStrippedPage(ini, pdfFileInText));
 	            }
-	            
-	            /**if (!document.isEncrypted()) {
-
-	                PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-	                stripper.setSortByPosition(true);
-
-	                PDFTextStripper tStripper = new PDFTextStripper();
-
-	                String pdfFileInText = tStripper.getText(document);
-	                //System.out.println("Text:" + st);
-	                System.out.println(pdfFileInText);
-					// split by whitespace
-//	                String lines[] = pdfFileInText.split("\\r?\\n");
-//	                for (String line : lines) {
-//	                    System.out.println(line);
-//	                }
-
-	            }**/
-
 	        }
 
 	    }
