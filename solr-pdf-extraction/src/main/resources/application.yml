@@ -7,6 +7,4 @@ spring:
    
 regionpattern: PODER
 
-pdfdirectory: /home/jose/pdfs
-   
-   -    
+pdfdirectory: /opt/pdfs/
