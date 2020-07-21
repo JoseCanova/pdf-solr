@@ -11,6 +11,4 @@ public class PageReader {
 		bufferedReader = new BufferedReader(new StringReader(stream));
 	}
 	
-	
-	
 }

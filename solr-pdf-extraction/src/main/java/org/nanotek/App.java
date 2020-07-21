@@ -1,7 +1,11 @@
 package org.nanotek;
 
+import java.io.File;
+import java.util.List;
+
 import org.nanotek.pdf.PdfReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +16,12 @@ public class App
 implements ApplicationRunner{
 
 	@Autowired
-	PdfReader readExample;
+	private PdfReader pdfReader;
+	
+	@Autowired
+	@Qualifier("pdfCollection")
+	private List<File> pdfFiles;
+	
 	
 	public App() {
 	}
@@ -23,6 +32,8 @@ implements ApplicationRunner{
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		readExample.readPdf();
+		pdfFiles.forEach(f -> {
+				pdfReader.readPdf(f);
+			});
 	}
 }

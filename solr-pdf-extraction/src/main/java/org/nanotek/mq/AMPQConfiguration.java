@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 
 @Configuration
@@ -49,6 +50,18 @@ public class AMPQConfiguration {
 			@Autowired JmsMessagingTemplate jmsMessagingTemplate, 
 			@Autowired @Qualifier("page_queue") Queue queue) {
 		return new JmsMessageSender<>(jmsMessagingTemplate , queue);
+	}
+	
+	@Bean
+	public DefaultMessageListenerContainer 
+				listenerContainer(@Autowired ConnectionFactory connectionFactory , 
+								  @Autowired @Qualifier("JmsListener") JmsListener jmsListener ) {
+		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
+		container.setConnectionFactory(connectionFactory);
+		container.setMaxConcurrentConsumers(1);
+		container.setDestinationName("activemq.page_queue");
+		container.setMessageListener(jmsListener);
+		return container;
 	}
 
 }

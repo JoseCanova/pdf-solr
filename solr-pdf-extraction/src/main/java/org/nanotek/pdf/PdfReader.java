@@ -22,13 +22,10 @@ public class PdfReader {
 	public PdfReader() {
 	}
 
-	public void  readPdf(File file) throws IOException {
+	public void  readPdf(File file) {
 		int ini = 0 , fim = 0; 
 		
-//		"/home/jose/processo-alvara/Diario_J_02.pdf" 
-		
 	        try (PDDocument document = PDDocument.load(file)) {
-
 	            int numPages = document.getNumberOfPages();
 	            PDFTextStripper tStripper = new PDFTextStripper();
 	            while (ini < numPages) { 
@@ -39,6 +36,8 @@ public class PdfReader {
 		            String pdfFileInText = tStripper.getText(document);
 		            pageSender.send(new PdfStrippedPage(ini, pdfFileInText));
 	            }
+	        }catch (Exception ex) { 
+	        	throw new RuntimeException(ex);
 	        }
 
 	    }
