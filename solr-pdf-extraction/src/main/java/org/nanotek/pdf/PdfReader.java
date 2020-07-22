@@ -34,7 +34,7 @@ public class PdfReader {
 	            	tStripper.setStartPage(ini);
 		            tStripper.setEndPage(fim);
 		            String pdfFileInText = tStripper.getText(document);
-		            pageSender.send(new PdfStrippedPage(ini, pdfFileInText));
+		            pageSender.send(new PdfStrippedPage(new Long(ini), pdfFileInText));
 	            }
 	        }catch (Exception ex) { 
 	        	throw new RuntimeException(ex);

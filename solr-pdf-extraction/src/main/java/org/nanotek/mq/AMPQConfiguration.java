@@ -58,7 +58,7 @@ public class AMPQConfiguration {
 								  @Autowired @Qualifier("JmsListener") JmsListener jmsListener ) {
 		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
-		container.setMaxConcurrentConsumers(1);
+		container.setMaxConcurrentConsumers(5);
 		container.setDestinationName("activemq.page_queue");
 		container.setMessageListener(jmsListener);
 		return container;

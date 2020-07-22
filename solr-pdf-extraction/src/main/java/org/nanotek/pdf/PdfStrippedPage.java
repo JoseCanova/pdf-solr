@@ -2,18 +2,18 @@ package org.nanotek.pdf;
 
 public class PdfStrippedPage {
 	
-	private Integer pageNumber;
+	private Long pageNumber;
 	
 	private String textPage;
 
 	public PdfStrippedPage() {}
 	
-	public PdfStrippedPage (Integer pageNumber , String textPage) { 
+	public PdfStrippedPage (Long pageNumber , String textPage) { 
 		this.pageNumber = pageNumber; 
 		this.textPage = textPage;
 	}
 
-	public Integer getPageNumber() {
+	public Long getPageNumber() {
 		return pageNumber;
 	}
 
